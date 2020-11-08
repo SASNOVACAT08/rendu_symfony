@@ -39,6 +39,8 @@ class CoursController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //On ajoute un cours avec un slug et un compteur de vu  à 0
+            //On envoie une notif
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $utile->generateUniqueSlug($cour->getTitle(), 'Cours');
             $cour->setSlug($slug);
@@ -65,6 +67,7 @@ class CoursController extends AbstractController
             $this->addFlash("danger", $translator->trans("flash.cours.non"));
             return $this->redirectToRoute("cours_index");
         }
+        //On incrémente le compteur de vu
         $em = $this->getDoctrine()->getManager();
         $cour->setVue($cour->getVue() + 1);
         $em->flush();
@@ -87,6 +90,7 @@ class CoursController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //on modifie le cours
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash("success", $translator->trans("flash.cours.update"));
             return $this->redirectToRoute('cours_index');
@@ -109,6 +113,7 @@ class CoursController extends AbstractController
             return $this->redirectToRoute("cours_index");
         }
         if ($this->isCsrfTokenValid('delete' . $cour->getId(), $request->request->get('_token'))) {
+            //on supprime le cours
             $entityManager = $this->getDoctrine()->getManager();
             $this->addFlash("success", $translator->trans("flash.cours.delete"));
             $entityManager->remove($cour);

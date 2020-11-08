@@ -39,6 +39,8 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //On ajoute un article avec la date actuelle, l'utilisateur connecté et on met son compteur de vu à 0
+            //On envoié aussi la notif
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $utile->generateUniqueSlug($article->getTitle(), 'Article');
             $article->setDate(new \DateTime());
@@ -67,6 +69,7 @@ class ArticleController extends AbstractController
             $this->addFlash("danger", $translator->trans("flash.article.non"));
             return $this->redirectToRoute("article_index");
         }
+        //On incrémente le compteur de vu de la page
         $em = $this->getDoctrine()->getManager();
         $article->setVue($article->getVue() + 1);
         $em->flush();
@@ -89,6 +92,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //On modifie l'article
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash("success", $translator->trans("flash.article.edit"));
             return $this->redirectToRoute('article_index');
@@ -111,6 +115,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute("article_index");
         }
         if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
+            //On verifie le token puis on supprime l'article
             $entityManager = $this->getDoctrine()->getManager();
             $this->addFlash("success", $translator->trans("flash.article.delete"));
             $entityManager->remove($article);

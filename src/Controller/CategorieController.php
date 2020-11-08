@@ -40,6 +40,7 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //On ajoute une catégorie avec un slug
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $utile->generateUniqueSlug($categorie->getName(), 'Categorie');
             $categorie->setSlug($slug);
@@ -83,6 +84,7 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //On peut modifier une catégorie
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash("success", $translator->trans("flash.categorie.update"));
             return $this->redirectToRoute('categorie_index');
@@ -105,6 +107,7 @@ class CategorieController extends AbstractController
             return $this->redirectToRoute("categorie_index");
         }
         if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->request->get('_token'))) {
+            //On supprime une catégorie
             $entityManager = $this->getDoctrine()->getManager();
             $this->addFlash("success", $translator->trans("flash.categorie.delete"));
             $entityManager->remove($categorie);
@@ -124,6 +127,7 @@ class CategorieController extends AbstractController
             $this->addFlash("danger", $translator->trans("flash.categorie.non"));
             return $this->redirectToRoute("categorie_index");
         }
+        //On ajoute un follow à la catégorie et une catégorie à l'utilisateur
         $em = $this->getDoctrine()->getManager();
         $this->getUser()->addCategory($categorie);
         $categorie->addFollow($this->getUser());
@@ -142,6 +146,7 @@ class CategorieController extends AbstractController
             $this->addFlash("danger", $translator->trans("flash.categorie.non"));
             return $this->redirectToRoute("categorie_index");
         }
+        //On supprime le follow à la catégorie et la catégorie à l'utilisateur
         $em = $this->getDoctrine()->getManager();
         $this->getUser()->removeCategory($categorie);
         $categorie->removeFollow($this->getUser());

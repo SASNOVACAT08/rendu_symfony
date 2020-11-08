@@ -23,6 +23,7 @@ class NotificationController extends AbstractController
      */
     public function index(NotificationRepository $notificationRepository): Response
     {
+        //on affiche les notifs
         $notifications = $this->getUser()->getNotifications();
         return $this->render('notification/index.html.twig', [
             'notifications' => $notifications,
@@ -37,6 +38,7 @@ class NotificationController extends AbstractController
     public function delete(Request $request, Notification $notification, TranslatorInterface $translator): Response
     {
         if ($this->isCsrfTokenValid('delete' . $notification->getId(), $request->request->get('_token'))) {
+            //on supprime la notif
             $entityManager = $this->getDoctrine()->getManager();
             $this->addFlash("success", $translator->trans("flash.notification.delete"));
             $entityManager->remove($notification);

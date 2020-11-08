@@ -18,6 +18,7 @@ class Utile
 
   public function generateUniqueSlug($nom, $entity)
   {
+    //Pour créer un slug qu'il soit déjà existant ou non
     $slugger = new AsciiSlugger();
     $slug = $slugger->slug($nom);
 
@@ -31,6 +32,7 @@ class Utile
 
   public function sendNotifications($entity)
   {
+    // Pour ajouter une notification à tous les utilisateurs qui ont follow la catégorie
     foreach ($entity->getCategorie()->getFollows() as $follow) {
       $notif = new Notification();
       $notif->setName($entity->getTitle());

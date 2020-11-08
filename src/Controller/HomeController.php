@@ -33,6 +33,7 @@ class HomeController extends AbstractController
      */
     public function users()
     {
+        //on récupère les utilisateurs
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository(User::class)->findAll();
         return $this->render('home/users.html.twig', [
@@ -46,6 +47,7 @@ class HomeController extends AbstractController
      */
     public function panel()
     {
+        //On compte les stats, possible de le faire aussi à partir d'un query builder
         $em = $this->getDoctrine()->getManager();
         $articles = $em->getRepository(Article::class)->findAll();
         $cours = $em->getRepository(Cours::class)->findAll();
