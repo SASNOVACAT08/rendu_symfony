@@ -45,3 +45,12 @@ flash:
     unfollow: "Fin du suivi"
   notification:
     delete: "Notification supprimé"
+
+Name: Nom
+Email: Email
+Password: Mot de passe
+Agree terms: Accepter les termes
+Title: Titre
+Content: Contenu
+Categorie: Catégorie
+Value: Valeur

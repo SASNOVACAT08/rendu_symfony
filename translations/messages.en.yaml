@@ -45,3 +45,12 @@ flash:
     unfollow: "Unfollowed"
   notification:
     delete: "Notification deleted"
+
+Name: Name
+Email: Email
+Password: Password
+Agree terms: Agree terms
+Title: Title
+Content: Content
+Categorie: Categorie
+Value: Value
