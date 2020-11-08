@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+
+    <div class="form-group" style="text-align:center">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'style': 'width:100%;max-width:400px;margin:auto;'}}) }}
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold" style="width:150px;margin:auto;">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}

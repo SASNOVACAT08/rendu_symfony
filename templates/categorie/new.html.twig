@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+    <h1 style="text-align:center;">{{'create'|trans}}</h1>
+
+    {{ include('categorie/_form.html.twig') }}
+
+{% endblock %}

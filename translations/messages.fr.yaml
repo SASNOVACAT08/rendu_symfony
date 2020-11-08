@@ -1,0 +1,56 @@
+name: Nom
+author: Auteur
+categorie: Catégorie
+follow: Suivre
+title: Titre
+top: Les cinq derniers articles
+cours: Cours
+articles: Articles
+categories: Catégories
+no-article: Il n'y pas d'article !
+no-cours: Il n'y a pas de cours !
+no-categorie: Il n'y pas de catégorie !
+no-notification: Il n'y pas de notification !
+notifications: Notifications
+delete: Supprimer
+edit: Editer
+save: Sauvegarder
+create: Créer un nouveau
+logout: Se déconnecter
+login: Se connecter
+register: S'enregistrer
+catch: Apprendre à coder !
+users: Utilisateurs
+n-users: Nombre d'utilisateurs
+vue: vues
+unfollow: Arreter de suivre
+
+flash:
+  article:
+    add: "Article ajouté"
+    delete: "Article supprimé"
+    edit: "Article modifié"
+    non: "Aucun article pour ce slug"
+  cours:
+    add: "Lesson ajouté"
+    delete: "Lesson supprimé"
+    edit: "Lesson modifié"
+    non: "Aucun cours pour ce slug"
+  categorie:
+    add: "Catégorie ajouté"
+    delete: "Catégorie supprimé"
+    edit: "Catégorie modifié"
+    non: "Aucune catégorie pour ce slug"
+    follow: "Suivi"
+    unfollow: "Fin du suivi"
+  notification:
+    delete: "Notification supprimé"
+
+Name: Nom
+Email: Email
+Password: Mot de passe
+Agree terms: Accepter les termes
+Title: Titre
+Content: Contenu
+Categorie: Catégorie
+Value: Valeur

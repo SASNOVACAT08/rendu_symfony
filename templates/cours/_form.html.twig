@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+
+    <div class="form-group" style="text-align:center">
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'style': 'width:100%;max-width:400px;margin:auto;'}}) }}
+    </div>
+
+    <div class="form-group" style="text-align:center">
+    {{ form_label(form.content) }}
+    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'style': 'width:100%;max-width:400px;height:20vh;margin:auto;'}}) }}
+    </div>
+
+    <div class="form-group" style="text-align:center">
+    {{ form_label(form.value) }}
+    {{ form_widget(form.value, {'attr': {'class': 'form-control', 'style': 'width:100%;max-width:400px;margin:auto;'}}) }}
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold" style="width:150px;margin:auto;">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

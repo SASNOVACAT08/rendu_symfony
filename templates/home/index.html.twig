@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+<div>
+    <h1>{{'articles'|trans}}</h1>
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <a href="{{path('notification_index')}}">{{'notifications'|trans}} : {{app.user.notifications|length}}</a>
+    {% endif %}
+    <h2>{{'top'|trans}}</h2>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <p><a href="{{path('article_show', {'slug': article.slug})}}">{{article.title}}</a></p>
+            </li>
+        {% else %}
+            <li>
+                <p>{{'no-article'|trans}}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>{{'cours'|trans}}</h2>
+    <ul>
+        {% for cour in cours %}
+            <li>
+                <p><a href="{{path('cours_show', {'slug': cour.slug})}}">{{cour.title}}</a></p>
+            </li>
+        {% else %}
+            <li>
+                <p>{{'no-cours'|trans}}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
