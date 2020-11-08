@@ -45,12 +45,12 @@ class Categorie
     private $follows;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="categorie", cascade={"remove"})
      */
     private $articles;
 
     /**
-     * @ORM\OneToMany(targetEntity=Cours::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Cours::class, mappedBy="categorie", cascade={"remove"})
      */
     private $cours;
 

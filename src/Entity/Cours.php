@@ -45,6 +45,7 @@ class Cours
     private $value;
 
     /**
+     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="cours")
      */
     private $categorie;

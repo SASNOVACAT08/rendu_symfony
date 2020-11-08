@@ -45,6 +45,7 @@ class Article
     private $date;
 
     /**
+     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="articles")
      */
     private $categorie;
