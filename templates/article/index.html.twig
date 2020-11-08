@@ -22,7 +22,7 @@
                 <td>{{ article.categorie }}</td>
                 <td>{{article.author}}</p>
                 <td>
-                    {% if is_granted("ROLE_ADMIN") %}
+                    {% if is_granted("ROLE_EDITOR") or is_granted("ROLE_ADMIN")%}
                         <a href="{{ path('article_edit', {'slug': article.slug}) }}">{{'edit'|trans}}</a>
                     {% endif %}
                 </td>

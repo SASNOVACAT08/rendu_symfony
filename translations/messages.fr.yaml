@@ -20,6 +20,10 @@ logout: Se déconnecter
 login: Se connecter
 register: S'enregistrer
 catch: Apprendre à coder !
+users: Utilisateurs
+n-users: Nombre d'utilisateurs
+vue: vues
+unfollow: Arreter de suivre
 
 flash:
   article:
@@ -38,5 +42,6 @@ flash:
     edit: "Catégorie modifié"
     non: "Aucune catégorie pour ce slug"
     follow: "Suivi"
+    unfollow: "Fin du suivi"
   notification:
     delete: "Notification supprimé"

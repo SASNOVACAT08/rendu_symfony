@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Cours;
-use App\Entity\Notification;
 use App\Form\CoursType;
 use App\Repository\CoursRepository;
 use App\Service\Utile;
@@ -43,14 +42,9 @@ class CoursController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $utile->generateUniqueSlug($cour->getTitle(), 'Cours');
             $cour->setSlug($slug);
+            $cour->setVue(0);
             $entityManager->persist($cour);
-            foreach ($cour->getCategorie()->getFollows() as $follow) {
-                $notif = new Notification();
-                $notif->setName($cour->getTitle());
-                $notif->setDate(new \DateTime());
-                $notif->setUser($follow);
-                $entityManager->persist($notif);
-            }
+            $utile->sendNotifications($cour);
             $entityManager->flush();
             $this->addFlash("success", $translator->trans("flash.cours.add"));
             return $this->redirectToRoute('cours_index');
@@ -71,6 +65,9 @@ class CoursController extends AbstractController
             $this->addFlash("danger", $translator->trans("flash.cours.non"));
             return $this->redirectToRoute("cours_index");
         }
+        $em = $this->getDoctrine()->getManager();
+        $cour->setVue($cour->getVue() + 1);
+        $em->flush();
         return $this->render('cours/show.html.twig', [
             'cour' => $cour,
         ]);

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -18,11 +19,22 @@ class Article
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 255,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="text")
      */
     private $content;
@@ -47,6 +59,11 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $vue;
 
     public function getId(): ?int
     {
@@ -121,6 +138,18 @@ class Article
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getVue(): ?int
+    {
+        return $this->vue;
+    }
+
+    public function setVue(int $vue): self
+    {
+        $this->vue = $vue;
 
         return $this;
     }

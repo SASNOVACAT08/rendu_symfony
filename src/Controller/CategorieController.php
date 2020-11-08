@@ -131,4 +131,22 @@ class CategorieController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('categorie_index');
     }
+
+    /**
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     * @Route("/{slug}/unfollow", name="categorie_unfollow", methods={"GET"})
+     */
+    public function unfollow(Categorie $categorie = null, TranslatorInterface $translator): Response
+    {
+        if ($categorie == null) {
+            $this->addFlash("danger", $translator->trans("flash.categorie.non"));
+            return $this->redirectToRoute("categorie_index");
+        }
+        $em = $this->getDoctrine()->getManager();
+        $this->getUser()->removeCategory($categorie);
+        $categorie->removeFollow($this->getUser());
+        $this->addFlash("success", $translator->trans("flash.categorie.unfollow"));
+        $em->flush();
+        return $this->redirectToRoute('categorie_index');
+    }
 }

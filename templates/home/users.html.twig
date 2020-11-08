@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+<div>
+  <h1>{{'users'|trans}}</h1>
+  <p>{{'n-users'|trans}} : {{users|length}}</p>
+  <ul>
+    {% for user in users %}
+      <li>{{user.email}}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

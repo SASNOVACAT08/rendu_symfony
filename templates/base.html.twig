@@ -10,6 +10,10 @@
             <nav>
                 <ul>
                     <li><a href="{{path('home')}}">Home</a></li>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li><a href="{{path('panel')}}">Panel</a></li>
+                        <li><a href="{{path('users')}}">{{'users'|trans}}</a></li>
+                    {% endif %}
                     <li><a href="{{path('article_index')}}">{{'articles'|trans}}</a></li>
                     <li><a href="{{path('cours_index')}}">{{'cours'|trans}}</a></li>
                     <li><a href="{{path('categorie_index')}}">{{'categories'|trans}}</a></li>
@@ -19,7 +23,6 @@
                         <li><a href="{{path('app_login')}}">{{'login'|trans}}</a></li>
                         <li><a href="{{path('app_register')}}">{{'register'|trans}}</a></li>
                     {% endif %}
-                    
                 </ul>
             </nav>
         </header>

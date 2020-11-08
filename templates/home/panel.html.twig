@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+<div>
+  <h1>Panel</h1>
+  <p>{{'articles'|trans}} : {{articles_vue}} {{'vue'|trans}}</p>
+  <p>{{'cours'|trans}} : {{cours_vue}} {{'vue'|trans}}</p>
+  <p>{{'n-users'|trans}} : {{users|length}}</p>
+  <ul>
+    {% for categorie in categories %}
+      <li>{{categorie.name}} : {{categorie.follows|length}} followers</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Service\Utile;
 use App\Entity\Article;
-use App\Entity\Notification;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,15 +43,10 @@ class ArticleController extends AbstractController
             $slug = $utile->generateUniqueSlug($article->getTitle(), 'Article');
             $article->setDate(new \DateTime());
             $article->setAuthor($this->getUser());
+            $article->setVue(0);
             $article->setSlug($slug);
             $entityManager->persist($article);
-            foreach ($article->getCategorie()->getFollows() as $follow) {
-                $notif = new Notification();
-                $notif->setName($article->getTitle());
-                $notif->setDate(new \DateTime());
-                $notif->setUser($follow);
-                $entityManager->persist($notif);
-            }
+            $utile->sendNotifications($article);
             $entityManager->flush();
             $this->addFlash("success", $translator->trans("flash.article.add"));
             return $this->redirectToRoute('article_index');
@@ -73,6 +67,9 @@ class ArticleController extends AbstractController
             $this->addFlash("danger", $translator->trans("flash.article.non"));
             return $this->redirectToRoute("article_index");
         }
+        $em = $this->getDoctrine()->getManager();
+        $article->setVue($article->getVue() + 1);
+        $em->flush();
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);

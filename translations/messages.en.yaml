@@ -20,6 +20,10 @@ logout: Logout
 login: Login
 register: Register
 catch: Learn to code !
+users: Users
+n-users: Users number
+vue: views
+unfollow: Unfollow
 
 flash:
   article:
@@ -38,5 +42,6 @@ flash:
     edit: "Categorie updated"
     non: "No categorie for this slug"
     follow: "Followed"
+    unfollow: "Unfollowed"
   notification:
     delete: "Notification deleted"

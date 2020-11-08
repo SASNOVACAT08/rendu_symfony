@@ -6,6 +6,8 @@
     <h1>{{categorie.name}}</h1>
     {% if (app.user not in categorie.follows) and is_granted("IS_AUTHENTICATED_FULLY") %}
         <a href="{{path('categorie_follow', {'slug': categorie.slug})}}">{{'follow'|trans}}</a>
+    {% elseif (app.user in categorie.follows) and is_granted("IS_AUTHENTICATED_FULLY") %}
+        <a href="{{path('categorie_unfollow', {'slug': categorie.slug})}}">{{'unfollow'|trans}}</a>
     {% endif %}
     {% if is_granted("ROLE_ADMIN") %}
         <a href="{{ path('categorie_edit', {'slug': categorie.slug}) }}">{{'edit'|trans}}</a>

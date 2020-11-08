@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CoursRepository::class)
@@ -18,11 +19,22 @@ class Cours
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 255,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @ORM\Column(type="text")
      */
     private $content;
@@ -41,6 +53,11 @@ class Cours
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $vue;
 
     public function getId(): ?int
     {
@@ -103,6 +120,18 @@ class Cours
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getVue(): ?int
+    {
+        return $this->vue;
+    }
+
+    public function setVue(int $vue): self
+    {
+        $this->vue = $vue;
 
         return $this;
     }
