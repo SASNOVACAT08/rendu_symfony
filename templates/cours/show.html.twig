@@ -3,7 +3,7 @@
 {% block title %}{{'catch'|trans}}{% endblock %}
 
 {% block body %}
-    <h1>{{cour.title}}</h1>
+    <h1 class="">{{cour.title}}</h1>
     <p>{{cour.content}}</p>
 
     {% if is_granted("ROLE_ADMIN") %}
