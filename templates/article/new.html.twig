@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+    <h1>{{'create'|trans}}</h1>
+
+    {{ include('article/_form.html.twig') }}
+
+{% endblock %}

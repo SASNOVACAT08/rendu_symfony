@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{'name'|trans}}</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notification in notifications %}
+            <tr>
+                <td>{{ notification.name }}</td>
+                <td>{{ notification.date ? notification.date|date('Y-m-d H:i:s') : '' }}
+                <td>{{ include('notification/_delete_form.html.twig') }}</td>
+            </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{'no-notification'|trans}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

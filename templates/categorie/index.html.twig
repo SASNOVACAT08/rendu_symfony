@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{'name'|trans}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td><a href="{{ path('categorie_show', {'slug': categorie.slug}) }}">{{ categorie.name }}</a></td>
+                <td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path('categorie_edit', {'slug': categorie.slug}) }}">{{'edit'|trans}}</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{'no-categorie'|trans}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('categorie_new') }}">{{'create'|trans}}</a>
+    {% endif %}
+{% endblock %}

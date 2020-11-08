@@ -1,0 +1,42 @@
+name: Name
+author: Author
+categorie: Categorie
+follow: Follow
+title: Title
+top: The last five articles
+cours: Lessons
+articles: Articles
+categories: Categories
+no-article: There is no article !
+no-cours: There is no lesson !
+no-categorie: There is no categorie !
+no-notification: There is no notification !
+notifications: Notifications
+delete: Delete
+edit: Edit
+save: Save
+create: Create a new
+logout: Logout
+login: Login
+register: Register
+catch: Learn to code !
+
+flash:
+  article:
+    add: "Article added"
+    delete: "Article deleted"
+    edit: "Article updated"
+    non: "No article for this slug"
+  cours:
+    add: "Lesson added"
+    delete: "Lesson deleted"
+    edit: "Lesson updated"
+    non: "No lesson for this slug"
+  categorie:
+    add: "Categorie added"
+    delete: "Categorie deleted"
+    edit: "Categorie updated"
+    non: "No categorie for this slug"
+    follow: "Followed"
+  notification:
+    delete: "Notification deleted"

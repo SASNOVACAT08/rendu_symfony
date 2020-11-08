@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{{'catch'|trans}}{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li><a href="{{path('article_index')}}">{{'articles'|trans}}</a></li>
+                    <li><a href="{{path('cours_index')}}">{{'cours'|trans}}</a></li>
+                    <li><a href="{{path('categorie_index')}}">{{'categories'|trans}}</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        <li><a href="{{path('app_logout')}}">{{'logout'|trans}}</a></li>
+                    {% else %}
+                        <li><a href="{{path('app_login')}}">{{'login'|trans}}</a></li>
+                        <li><a href="{{path('app_register')}}">{{'register'|trans}}</a></li>
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+        </header>
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <p>{{type}} : {{message}}</p>
+            {% endfor %}
+        {% endfor %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

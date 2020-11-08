@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+    <h1>{{'articles'|trans}}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{'title'|trans}}</th>
+                <th>Date</th>
+                <th>{{'categorie'|trans}}</th>
+                <th>{{'author'|trans}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td><a href="{{ path('article_show', {'slug': article.slug}) }}">{{ article.title }}</a></td>
+                <td>{{ article.date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.categorie }}</td>
+                <td>{{article.author}}</p>
+                <td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path('article_edit', {'slug': article.slug}) }}">{{'edit'|trans}}</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">{{'no-article'|trans}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('article_new') }}">{{'create'|trans}}</a>
+    {% endif %}
+{% endblock %}

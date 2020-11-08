@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'catch'|trans}}{% endblock %}
+
+{% block body %}
+    <h1>{{article.title}}</h1>
+    <p>{{article.date|date('Y-m-d H:i:s')}}</p>
+    <p>{{article.author}}</p>
+    <p>{{article.content}}</p>
+
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('article_edit', {'slug': article.slug}) }}">{{'edit'|trans}}</a>
+
+        {{ include('article/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}
